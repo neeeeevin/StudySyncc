@@ -6,7 +6,14 @@ require('dotenv').config(); // Loads .env file
 const app = express();
 
 // --- Middleware ---
-app.use(cors({ origin: 'http://localhost:5173' })); 
+app.use(cors({
+  origin: [
+    'http://localhost:5173',          // local dev
+    'https://studysync.netlify.app',  // your Netlify frontend URL
+  ],
+  credentials: true,
+}));
+
 app.use(express.json()); 
 
 // --- Database Connection ---
